@@ -5,6 +5,7 @@ class Mailboxer::Notification < ActiveRecord::Base
   attr_accessible :body, :subject, :global, :expires if Mailboxer.protected_attributes?
 
   belongs_to :sender, :polymorphic => :true
+  belongs_to :target, :polymorphic => :true
   belongs_to :notified_object, :polymorphic => :true
   has_many :receipts, :dependent => :destroy, :class_name => "Mailboxer::Receipt"
 
