@@ -4,6 +4,7 @@ class CreateMailboxer < ActiveRecord::Migration
   	#Conversations
     create_table :mailboxer_conversations do |t|
       t.column :subject, :string, :default => ""
+      t.references :target, :polymorphic => true
       t.column :created_at, :datetime, :null => false
       t.column :updated_at, :datetime, :null => false
     end    
@@ -24,6 +25,7 @@ class CreateMailboxer < ActiveRecord::Migration
       t.column :body, :text
       t.column :subject, :string, :default => ""
       t.references :sender, :polymorphic => true
+      t.references :target, :polymorphic => true
       t.column :conversation_id, :integer
       t.column :draft, :boolean, :default => false
       t.string :notification_code, :default => nil
